@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using eTickets.Models;
 
+// Testing to see if this works
+
 namespace eTickets.Controllers
 {
     public class HomeController : Controller
