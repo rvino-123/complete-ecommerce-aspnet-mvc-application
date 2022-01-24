@@ -38,8 +38,8 @@
                             <a href="/">Order History</a>
                         </td>
                         <td>
-                            <a class="btn btn-outline-info">Edit</a>
-                            <a class="btn btn-danger">Delete</a>
+                            <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
                         </td>
 
                     </tr>
