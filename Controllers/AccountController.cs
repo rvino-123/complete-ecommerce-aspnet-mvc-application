@@ -24,11 +24,11 @@ namespace eTickets.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Users()
-        {
-            var users = await _context.Users.ToListAsync();
-            return View(users);
-        }
+        //public async Task<IActionResult> Users()
+        //{
+        //    var users = await _context.Users.ToListAsync();
+        //    return View(users);
+        //}
 
         public IActionResult Login() => View(new LoginVM());
 
@@ -85,6 +85,8 @@ namespace eTickets.Controllers
             return View("RegisterCompleted");
             
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Logout()

@@ -115,7 +115,7 @@ namespace eTickets.Controllers
             return View(response);
         }
 
-        // POST /Movies/Create
+        // POST /Movies/Edit
         [HttpPost]
         public async Task<IActionResult> Edit(int id, NewMovieVM movie)
         {

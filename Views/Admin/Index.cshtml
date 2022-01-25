@@ -1,0 +1,51 @@
+﻿@using eTickets.Data.ViewModels
+@model IEnumerable<UserWithRoleVM>
+
+@{
+    ViewData["Title"] = "List of Users";
+}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+
+        <table class="table">
+            <thead>
+                <tr class="test-center">
+                    <th>Full Name</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Order History</th>
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.Role)</td>
+                        <td class="align-middle">
+                            <a asp-action="Orders" asp-route-id="@item.UserId">Order History</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
