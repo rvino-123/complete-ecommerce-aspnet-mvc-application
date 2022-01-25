@@ -11,17 +11,19 @@ using System.Threading.Tasks;
 
 namespace eTickets.Controllers
 {
-    //[Authorize(Roles = UserRoles.Admin)]
+    [Authorize(Roles = UserRoles.Admin)]
     public class AdminController : Controller
     {
         private readonly IAdminService _service;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IOrdersService _ordersService;
 
 
-        public AdminController(IAdminService service, UserManager<ApplicationUser> userManager)
+        public AdminController(IAdminService service, UserManager<ApplicationUser> userManager, IOrdersService ordersService)
         {
             _service = service;
             _userManager = userManager;
+            _ordersService = ordersService;
         }
 
         // Admin Panel Can:
@@ -92,6 +94,15 @@ namespace eTickets.Controllers
 
             await _userManager.DeleteAsync(user);
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Orders(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            var allOrders = await _ordersService.GetOrderByUserIdAndRoleAsync(user.Id, "User");
+            ViewBag.User = user.FullName;
+            return View(allOrders);
+
         }
     }
 }

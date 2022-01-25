@@ -35,7 +35,7 @@
                         </td>
                         <td>@Html.DisplayFor(modelItem => item.Role)</td>
                         <td class="align-middle">
-                            <a href="/">Order History</a>
+                            <a asp-action="Orders" asp-route-id="@item.UserId">Order History</a>
                         </td>
                         <td>
                             <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
