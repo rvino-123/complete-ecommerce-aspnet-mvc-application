@@ -34,6 +34,9 @@ namespace eTickets.Models
         [Display(Name = "End Date")]
         [Required(ErrorMessage = "End date is required")]
         public DateTime EndDate { get; set; }
+        [Display(Name="Show Times")]
+        [Required(ErrorMessage ="Must Add at Least One Showing Time")]
+        public List<DateTime> DateAndTimes { get; set; }
 
         [Display(Name = "Select a category")]
         [Required(ErrorMessage = "Movie category is required")]

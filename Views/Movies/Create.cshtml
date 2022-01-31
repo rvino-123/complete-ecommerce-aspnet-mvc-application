@@ -37,6 +37,15 @@
                                 <span asp-validation-for="Price" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="DateAndTimes" class="control-label"></label>
+                                <div>
+                                    <label for="datetime-selector">Select a Showing Date and Time</label>
+                                    <input type="time" id="datetime-input"/>
+                                    <button type="button" class="btn btn-success" id="add-datetime-button">+</button>
+                                </div>
+                                <select asp-for="DateAndTimes" id="datetime-select"></select>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="ImageUrl" class="control-label"></label>
                                 <input asp-for="ImageUrl" class="form-control" />
                                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
@@ -93,6 +102,16 @@
     $("#ImageUrl").on("change", function () {
         var output = document.getElementById("ImageUrlPreview");
         output.src = $(this).val();
+    })
+
+    $("#add-datetime-button").on("click", function () {
+        var input = document.getElementById("datetime-input");
+        var output = document.getElementById("datetime-select");
+        var temp = document.createElement("option");
+        temp.value = input.value;
+        temp.innerText = input.value;
+        output.append(temp);
+        input.value=""
     })
 </script>
 }

@@ -2,6 +2,7 @@
 using eTickets.Data.Services;
 using eTickets.Data.Static;
 using eTickets.Data.ViewModels;
+using eTickets.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -48,8 +49,16 @@ namespace eTickets.Controllers
             return View(response);
         }
 
+        public async Task<IActionResult> ConfirmItem(int id)
+        {
+            var movie = await _moviesService.GetByIdAsync(id);
+            return View(movie);
+
+
+        }
+
         // Adding item to cart
-        public async Task<IActionResult> AddItemToShoppingCart(int id)
+        public async Task<IActionResult> AddItemToShoppingCart(int id, [FromQuery])
         {
             var item = await _moviesService.GetMovieByIdAsync(id);
             if (item != null)

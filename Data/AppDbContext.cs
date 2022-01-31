@@ -28,6 +28,11 @@ namespace eTickets.Data
                 .HasOne(m => m.Actor)
                 .WithMany(am => am.Actors_Movies)
                 .HasForeignKey(m => m.ActorId);
+
+            modelBuilder.Entity<MovieTime>()
+                .HasOne(m => m.Movie)
+                .WithMany(mt => mt.MovieTimes)
+                .HasForeignKey(m => m.MovieId);
             
             base.OnModelCreating(modelBuilder);
         }
@@ -37,6 +42,7 @@ namespace eTickets.Data
         public DbSet<Actor_Movie> Actors_Movies { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Producer> Producers { get; set; }
+        public DbSet<MovieTime> MovieTime { get; set; }
    
 
         //Orders related tables

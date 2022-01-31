@@ -29,6 +29,7 @@ namespace eTickets.Data.Services
                 MovieCategory = data.MovieCategory,
                 ProducerId = data.ProducerId
             };
+
             await _context.Movies.AddAsync(newMovie);
             await _context.SaveChangesAsync();
 
@@ -42,6 +43,16 @@ namespace eTickets.Data.Services
                 };
                 await _context.Actors_Movies.AddAsync(newActorMovie);
             }
+
+            foreach (var movieTime in data.DateAndTimes)
+            {
+                var newMovieTime = new MovieTime()
+                {
+                    DateAndTime = movieTime,
+                    MovieId = newMovie.Id
+                };
+                await _context.MovieTime.AddAsync(newMovieTime);
+            }
             await _context.SaveChangesAsync();
         }
 
@@ -51,6 +62,7 @@ namespace eTickets.Data.Services
                 .Include(c => c.Cinema)
                 .Include(p => p.Producer)
                 .Include(am => am.Actors_Movies).ThenInclude(a => a.Actor)
+                .Include(mt => mt.MovieTimes)
                 .FirstOrDefaultAsync(n => n.Id == id);
 
             return movieDetails;
